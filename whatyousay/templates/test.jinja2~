@@ -1,0 +1,10 @@
+{% extends 'templates/base.jinja2' %}
+
+{% block body %}
+
+<form action='/test' name='form_upload' id='file_upload'>
+	<input name='uploaded' type='file'/>
+	<input type='submit' value='提交'/>
+</form>
+
+{% endblock %}

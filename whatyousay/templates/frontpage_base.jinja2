@@ -1,0 +1,76 @@
+﻿{% extends "templates/base.jinja2" %}
+
+{% block css_block %}
+<link rel="stylesheet" href="{{ request.static_url('whatyousay:static/home.css') }}" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+<div id="header">
+	<div id="header_inner">
+		<div id="logo">
+			<a href="{{ request.application_url }}">听说</a>
+		</div>
+		{% if request.session['logged_in'] == True %}
+		<div id="nav" class="left">
+			<ul>
+				<li><a href="{{ request.application_url }}">首页</a></li>
+				<li><a href="{{ request.route_url('personal_page',domain=request.session['domain']) }}">我的主页</a></li>
+			</ul>
+		</div>
+		<form id="search_form" action="/search" method="GET">
+			<span class="glass right">
+			</span>
+		</form>
+		<div id="user_links">
+			<a href=""><img src="{{ photo_url }}"/></a>
+		</div>
+		{% else %}
+		<form id="heaer_login" action="/login" method="POST" class="right">
+		<span>
+			<label for="user_session_login">用邮箱登录</label><br/>
+			<input id="user_session_login" type="text" name="user_session[login]" size="30"
+					class="input_text"/>
+		</span>
+		<span>
+			<label for="user_session_password">密码</label><br/>
+			<input id="user_session_password" type="password" name="user_session[password]" size="30"
+					class="input_text"/>
+		</span>
+		<span>
+			<input class="button" type="submit" name="commit" value="登入"/>
+		</span>
+		</form>
+		{% endif %}
+	</div>
+</div>
+
+<div id="main_container" class="center">
+	<div id="main">
+	{% block main %}
+	{% endblock %}
+	</div>
+	<div id="sidebar">
+	{% block sidebar %}
+	{% endblock %}
+	</div>
+	<a class="scroll_to_top">
+	</a>
+</div>
+
+<script type="text/javascript">
+	window.scrollBy(100, 100)
+	window.onscroll = function(){
+		if (window.pageYOffset >= 600)
+			$('a.scroll_to_top').setStyle('display', 'block')
+		else
+			$('a.scroll_to_top').setStyle('display', 'none')
+		}
+		
+	$('a.scroll_to_top').addEvent('click', 
+	function(event){
+		window.scrollTo(0,0)
+		}
+	)		
+</script>
+
+{% endblock %}

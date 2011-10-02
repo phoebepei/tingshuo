@@ -1,0 +1,23 @@
+{% extends "templates/frontpage_base.jinja2" %}
+
+{% block main %}
+{% if request.session['logged_in']==True %}
+<h1>{{ request.session['title'] }}，说点什么吧</h1>
+<div id="publisher" class='border_radius'>
+	<ul>
+		<li><a href="#">文本</a></li>
+		<li><a href="#">图片</a></li>
+		<li><a href="#">音乐</a></li>
+		<li><a href="#">链接</a></li>
+		<li><a href="#">视频</a></li>
+	</ul>
+</div>
+{% else %}
+<h1>听，他们在说...</h1>
+
+{% endif %}
+{% endblock %}
+
+{% block sidebar %}
+
+{% endblock %}

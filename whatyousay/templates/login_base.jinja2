@@ -1,0 +1,22 @@
+﻿{% extends 'templates/base.jinja2' %}
+
+{% block css_block %}
+	<link rel="stylesheet" href="{{ request.static_url('whatyousay:static/login.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block body %}
+<body onload="$('user_session_login').focus()">
+	<div id="page_container" class="center">
+	<div id="login_page">
+		{% block content %}
+		{% endblock %}
+	</div>
+	<script type="text/javascript">
+		
+	</script>
+	<div id="footer">
+	copyright &copy;2011 PLH
+	</div>
+	</div>
+</body>
+{% endblock %}
